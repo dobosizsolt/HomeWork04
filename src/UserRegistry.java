@@ -205,4 +205,16 @@ public class UserRegistry {
         }
 
     }
+
+    public int countUser() {
+
+        int count = 0;
+
+        for (int i = 0; i < users.length; i++) {
+            if (users[i] != null) {
+                count++;
+            }
+        }
+        return count;
+    }
 }

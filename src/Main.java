@@ -4,5 +4,6 @@ public class Main {
        UserRegistry userRegistry = new UserRegistry();
        userRegistry.printMenu();
        userRegistry.run();
-    }
+       System.out.println(userRegistry.countUser());
+       }
 }
