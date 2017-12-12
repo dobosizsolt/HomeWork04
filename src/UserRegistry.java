@@ -28,6 +28,7 @@ public class UserRegistry {
                     addNewUser();
                     break;
                 case 3:
+                    modifyUser();
                     break;
                 case 4:
                     deleteUser();
@@ -129,7 +130,49 @@ public class UserRegistry {
     }
 
     private void modifyUser() {
-        //TODO
+
+        String modifFirstname;
+        String modifLastname;
+
+        Scanner scanner = new Scanner(System.in);
+
+        /**Konzolról bekértem a módosítandó felhasználó azonosítóját,
+         * inicializáltam egy boolean típusú segéd változót,
+         * majd for ciklussal megvizsgáltam, hogy a tömbben létezik-e
+         * ilyen azonosító és a benne szereplő azonosítók egyike
+         * egyezik-e az inputId értékével, ha igen, akkor
+         * bekéri a módosítandó adatokat és a tömb kiválasztott
+         * elemének értékéül adja azokat,
+         * ha nincs ilyen azonosító, akkor kiírja konzolra.*/
+
+        System.out.println("A módosítandó felhasználó azonosítója: ");
+
+        int inputId = scanner.nextInt();
+        boolean match = false;
+
+        for (int i = 0; i < users.length; i++) {
+            if (users[i] != null && users[i].getId() == inputId) {
+                Scanner scannerModif = new Scanner(System.in);
+
+                System.out.println("firstname: ");
+                modifFirstname = scannerModif.next();
+
+                System.out.println("lastname: ");
+                modifLastname = scannerModif.next();
+
+                users[i].setFirstName(modifFirstname);
+                users[i].setLastName(modifLastname);
+                users[i].setPassword(PasswordGenerator.generatePassword(7));
+
+                match = true;
+                System.out.println("Felhasználó módosítva.");
+                break;
+            }
+        }
+
+        if (!match) {
+            System.out.println("Azonosító nem létezik!");
+        }
     }
 
     private void deleteUser() {
